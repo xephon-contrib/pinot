@@ -33,6 +33,7 @@ import com.linkedin.pinot.core.operator.blocks.MatchEntireSegmentDocIdSetBlock;
 import com.linkedin.pinot.core.operator.filter.MatchEntireSegmentOperator;
 import com.linkedin.pinot.core.segment.creator.impl.SegmentIndexCreationDriverImpl;
 import com.linkedin.pinot.core.segment.index.loader.Loaders;
+import com.linkedin.pinot.util.TestUtils;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -200,7 +201,7 @@ public class DefaultAggregationExecutorTest {
     }
 
     SegmentIndexCreationDriverImpl driver = new SegmentIndexCreationDriverImpl();
-    RecordReader reader = createReader(schema, data);
+    RecordReader reader = new TestUtils.GenericRowRecordReader(schema, data);
 
     driver.init(config, reader);
     driver.build();
@@ -284,57 +285,5 @@ public class DefaultAggregationExecutorTest {
       min = Math.min(min, values[i]);
     }
     return min;
-  }
-
-  /**
-   * Record reader to generate the index segment.
-   *
-   * @param schema
-   * @param data
-   * @return
-   */
-  private RecordReader createReader(final Schema schema, final List<GenericRow> data) {
-    return new RecordReader() {
-
-      int counter = 0;
-
-      @Override
-      public void rewind()
-          throws Exception {
-        counter = 0;
-      }
-
-      @Override
-      public GenericRow next() {
-        return data.get(counter++);
-      }
-
-      @Override
-      public void init()
-          throws Exception {
-
-      }
-
-      @Override
-      public boolean hasNext() {
-        return counter < data.size();
-      }
-
-      @Override
-      public Schema getSchema() {
-        return schema;
-      }
-
-      @Override
-      public Map<String, MutableLong> getNullCountMap() {
-        return null;
-      }
-
-      @Override
-      public void close()
-          throws Exception {
-
-      }
-    };
   }
 }

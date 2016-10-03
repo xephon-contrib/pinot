@@ -17,6 +17,7 @@ package com.linkedin.pinot.core.operator.blocks;
 
 import com.linkedin.pinot.common.data.FieldSpec.DataType;
 import com.linkedin.pinot.common.exception.QueryException;
+import com.linkedin.pinot.common.request.transform.result.TransformResult;
 import com.linkedin.pinot.common.response.ProcessingException;
 import com.linkedin.pinot.common.utils.DataTable;
 import com.linkedin.pinot.common.utils.DataTableBuilder;
@@ -61,6 +62,7 @@ public class IntermediateResultsBlock implements Block {
   private static final String NUM_ENTRIES_SCANNED_IN_FILTER = "numEntriesScannedInFilter";
   private static final String NUM_ENTRIES_SCANNED_POST_FILTER = "numEntriesScannedPostFilter";
   private static final String TOTAL_DOCS = "totalDocs";
+  private TransformResult _transformExpressionResult;
 
   public IntermediateResultsBlock(List<AggregationFunction> aggregationFunctionList,
       List<Serializable> aggregationResult) {
@@ -103,6 +105,10 @@ public class IntermediateResultsBlock implements Block {
   public IntermediateResultsBlock(ProcessingException processingException, Exception e) {
     _processingExceptions = new ArrayList<>();
     _processingExceptions.add(QueryException.getException(processingException, e));
+  }
+
+  public IntermediateResultsBlock(TransformResult transformExpressionResult) {
+    _transformExpressionResult = transformExpressionResult;
   }
 
   public IntermediateResultsBlock() {
@@ -300,5 +306,9 @@ public class IntermediateResultsBlock implements Block {
 
   public AggregationGroupByResult getAggregationGroupByResult() {
     return _aggregationGroupByResult;
+  }
+
+  public TransformResult getTransformExpressionResult() {
+    return _transformExpressionResult;
   }
 }
