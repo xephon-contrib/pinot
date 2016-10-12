@@ -129,8 +129,8 @@ public class AggregationMVQueriesTest {
     AggregationResult aggregationResult = brokerResponse.getAggregationResults().get(0);
     Assert.assertEquals(aggregationResult.getFunction(), "sum_column7");
 
-    System.out.println("testSumAggrMV");
-    System.out.println(aggregationResult.getValue());
+//    System.out.println("testSumAggrMV");
+//    System.out.println(aggregationResult.getValue());
     Assert.assertEquals(aggregationResult.getValue(), "2144864368413420.00000");
 
   }
@@ -147,8 +147,8 @@ public class AggregationMVQueriesTest {
     AggregationResult aggregationResult = brokerResponse.getAggregationResults().get(0);
     Assert.assertEquals(aggregationResult.getFunction(), "avg_column7");
 
-    System.out.println("testAvgAggrMV");
-    System.out.println(aggregationResult.getValue());
+//    System.out.println("testAvgAggrMV");
+//    System.out.println(aggregationResult.getValue());
     Assert.assertEquals(aggregationResult.getValue(), "799785356.25827");
   }
 
@@ -164,8 +164,8 @@ public class AggregationMVQueriesTest {
     AggregationResult aggregationResult = brokerResponse.getAggregationResults().get(0);
     Assert.assertEquals(aggregationResult.getFunction(), "min_column7");
 
-    System.out.println("testMinAggrMV");
-    System.out.println(aggregationResult.getValue());
+//    System.out.println("testMinAggrMV");
+//    System.out.println(aggregationResult.getValue());
     Assert.assertEquals(aggregationResult.getValue(), "201.00000");
 
   }
@@ -182,8 +182,8 @@ public class AggregationMVQueriesTest {
     AggregationResult aggregationResult = brokerResponse.getAggregationResults().get(0);
     Assert.assertEquals(aggregationResult.getFunction(), "max_column7");
 
-    System.out.println("testMaxAggrMV");
-    System.out.println(aggregationResult.getValue());
+//    System.out.println("testMaxAggrMV");
+//    System.out.println(aggregationResult.getValue());
     Assert.assertEquals(aggregationResult.getValue(), "2147483647.00000");
 
   }
@@ -200,8 +200,8 @@ public class AggregationMVQueriesTest {
     AggregationResult aggregationResult = brokerResponse.getAggregationResults().get(0);
     Assert.assertEquals(aggregationResult.getFunction(), "minMaxRange_column7");
 
-    System.out.println("testMinMaxRangeAggrMV");
-    System.out.println(aggregationResult.getValue());
+//    System.out.println("testMinMaxRangeAggrMV");
+//    System.out.println(aggregationResult.getValue());
     Assert.assertEquals(aggregationResult.getValue(), "2147483446.00000");
 
   }
@@ -218,8 +218,8 @@ public class AggregationMVQueriesTest {
     AggregationResult aggregationResult = brokerResponse.getAggregationResults().get(0);
     Assert.assertEquals(aggregationResult.getFunction(), "distinctCount_column7");
 
-    System.out.println("testDistinctCountAggrMV");
-    System.out.println(aggregationResult.getValue());
+//    System.out.println("testDistinctCountAggrMV");
+//    System.out.println(aggregationResult.getValue());
     Assert.assertEquals(aggregationResult.getValue(), "359");
   }
 
@@ -235,8 +235,8 @@ public class AggregationMVQueriesTest {
     AggregationResult aggregationResult = brokerResponse.getAggregationResults().get(0);
     Assert.assertEquals(aggregationResult.getFunction(), "distinctCountHLL_column7");
 
-    System.out.println("testDistinctCountHllAggrMV");
-    System.out.println(aggregationResult.getValue());
+//    System.out.println("testDistinctCountHllAggrMV");
+//    System.out.println(aggregationResult.getValue());
     Assert.assertEquals(aggregationResult.getValue(), "376");
   }
 
@@ -252,8 +252,8 @@ public class AggregationMVQueriesTest {
     AggregationResult aggregationResult = brokerResponse.getAggregationResults().get(0);
     Assert.assertEquals(aggregationResult.getFunction(), "percentile50_column7");
 
-    System.out.println("testPercentile50AggrMV");
-    System.out.println(aggregationResult.getValue());
+//    System.out.println("testPercentile50AggrMV");
+//    System.out.println(aggregationResult.getValue());
     Assert.assertEquals(aggregationResult.getValue(), "492.00000");
   }
 
@@ -269,8 +269,8 @@ public class AggregationMVQueriesTest {
     AggregationResult aggregationResult = brokerResponse.getAggregationResults().get(0);
     Assert.assertEquals(aggregationResult.getFunction(), "percentile90_column7");
 
-    System.out.println("testPercentile90AggrMV");
-    System.out.println(aggregationResult.getValue());
+//    System.out.println("testPercentile90AggrMV");
+//    System.out.println(aggregationResult.getValue());
     Assert.assertEquals(aggregationResult.getValue(), "2147483647.00000");
   }
 
@@ -286,8 +286,8 @@ public class AggregationMVQueriesTest {
     AggregationResult aggregationResult = brokerResponse.getAggregationResults().get(0);
     Assert.assertEquals(aggregationResult.getFunction(), "percentile95_column7");
 
-    System.out.println("testPercentile95AggrMV");
-    System.out.println(aggregationResult.getValue());
+//    System.out.println("testPercentile95AggrMV");
+//    System.out.println(aggregationResult.getValue());
     Assert.assertEquals(aggregationResult.getValue(), "2147483647.00000");
   }
 
@@ -303,8 +303,8 @@ public class AggregationMVQueriesTest {
     AggregationResult aggregationResult = brokerResponse.getAggregationResults().get(0);
     Assert.assertEquals(aggregationResult.getFunction(), "percentile99_column7");
 
-    System.out.println("testPercentile99AggrMV");
-    System.out.println(aggregationResult.getValue());
+//    System.out.println("testPercentile99AggrMV");
+//    System.out.println(aggregationResult.getValue());
     Assert.assertEquals(aggregationResult.getValue(), "2147483647.00000");
   }
 
@@ -320,8 +320,8 @@ public class AggregationMVQueriesTest {
     AggregationResult aggregationResult = brokerResponse.getAggregationResults().get(0);
     Assert.assertEquals(aggregationResult.getFunction(), "percentileEst50_column7");
 
-    System.out.println("testPercentileEst50AggrMV");
-    System.out.println(aggregationResult.getValue());
+//    System.out.println("testPercentileEst50AggrMV");
+//    System.out.println(aggregationResult.getValue());
     Assert.assertEquals(aggregationResult.getValue(), "495");
   }
 
@@ -337,8 +337,8 @@ public class AggregationMVQueriesTest {
     AggregationResult aggregationResult = brokerResponse.getAggregationResults().get(0);
     Assert.assertEquals(aggregationResult.getFunction(), "percentileEst90_column7");
 
-    System.out.println("testPercentileEst90AggrMV");
-    System.out.println(aggregationResult.getValue());
+//    System.out.println("testPercentileEst90AggrMV");
+//    System.out.println(aggregationResult.getValue());
     Assert.assertEquals(aggregationResult.getValue(), "2147483647");
   }
 
@@ -354,8 +354,8 @@ public class AggregationMVQueriesTest {
     AggregationResult aggregationResult = brokerResponse.getAggregationResults().get(0);
     Assert.assertEquals(aggregationResult.getFunction(), "percentileEst95_column7");
 
-    System.out.println("testPercentileEst95AggrMV");
-    System.out.println(aggregationResult.getValue());
+//    System.out.println("testPercentileEst95AggrMV");
+//    System.out.println(aggregationResult.getValue());
     Assert.assertEquals(aggregationResult.getValue(), "2147483647");
   }
 
@@ -371,8 +371,8 @@ public class AggregationMVQueriesTest {
     AggregationResult aggregationResult = brokerResponse.getAggregationResults().get(0);
     Assert.assertEquals(aggregationResult.getFunction(), "percentileEst99_column7");
 
-    System.out.println("testPercentileEst99AggrMV");
-    System.out.println(aggregationResult.getValue());
+//    System.out.println("testPercentileEst99AggrMV");
+//    System.out.println(aggregationResult.getValue());
     Assert.assertEquals(aggregationResult.getValue(), "2147483647");
   }
 

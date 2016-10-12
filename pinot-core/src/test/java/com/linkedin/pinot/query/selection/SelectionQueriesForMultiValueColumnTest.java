@@ -126,7 +126,7 @@ public class SelectionQueriesForMultiValueColumnTest {
     driver.init(config);
     driver.build();
 
-    System.out.println("built at : " + INDEX_DIR.getAbsolutePath());
+//    System.out.println("built at : " + INDEX_DIR.getAbsolutePath());
     final File indexSegmentDir = new File(INDEX_DIR, driver.getSegmentName());
     _indexSegment = ColumnarSegmentLoader.load(indexSegmentDir, ReadMode.heap);
     _medataMap = ((SegmentMetadataImpl) ((IndexSegmentImpl) _indexSegment).getSegmentMetadata()).getColumnMetadataMap();
@@ -151,7 +151,7 @@ public class SelectionQueriesForMultiValueColumnTest {
       driver.init(config);
       driver.build();
 
-      System.out.println("built at : " + segmentDir.getAbsolutePath());
+//      System.out.println("built at : " + segmentDir.getAbsolutePath());
       _indexSegmentList.add(new OfflineSegmentDataManager(ColumnarSegmentLoader.load(new File(segmentDir, driver.getSegmentName()), ReadMode.heap)));
     }
   }
@@ -173,12 +173,12 @@ public class SelectionQueriesForMultiValueColumnTest {
     final IntermediateResultsBlock block = (IntermediateResultsBlock) selectionOperator.nextBlock();
     final PriorityQueue<Serializable[]> pq = (PriorityQueue<Serializable[]>) block.getSelectionResult();
     final DataSchema dataSchema = block.getSelectionDataSchema();
-    System.out.println(dataSchema);
+//    System.out.println(dataSchema);
     Serializable[] selectionArray = new Serializable[] { 2147279568, 2147339302, 2147344388, 2147344388, 2147393520, 2147393520, 2147434110, 2147434110, 2147434110, 2147434110 };
     int i = 0;
     while (!pq.isEmpty()) {
       final Serializable[] row = pq.poll();
-      System.out.println(SelectionOperatorUtils.getRowStringFromSerializable(row, dataSchema));
+//      System.out.println(SelectionOperatorUtils.getRowStringFromSerializable(row, dataSchema));
       Assert.assertEquals(row[0], selectionArray[i++]);
     }
   }
@@ -236,15 +236,15 @@ public class SelectionQueriesForMultiValueColumnTest {
   public void testInnerSegmentPlanMakerForSelectionWithFilter() throws Exception {
     setupSegment();
     final BrokerRequest brokerRequest = getSelectionWithFilterBrokerRequest();
-    System.out.println(brokerRequest);
+//    System.out.println(brokerRequest);
     final PlanMaker instancePlanMaker = new InstancePlanMakerImplV2();
     final PlanNode rootPlanNode = instancePlanMaker.makeInnerSegmentPlan(_indexSegment, brokerRequest);
     rootPlanNode.showTree("");
     final MSelectionOrderByOperator operator = (MSelectionOrderByOperator) rootPlanNode.run();
     final IntermediateResultsBlock resultBlock = (IntermediateResultsBlock) operator.nextBlock();
-    System.out.println("RunningTime : " + resultBlock.getTimeUsedMs());
-    System.out.println("NumDocsScanned : " + resultBlock.getNumDocsScanned());
-    System.out.println("TotalDocs : " + resultBlock.getTotalRawDocs());
+//    System.out.println("RunningTime : " + resultBlock.getTimeUsedMs());
+//    System.out.println("NumDocsScanned : " + resultBlock.getNumDocsScanned());
+//    System.out.println("TotalDocs : " + resultBlock.getTotalRawDocs());
     Assert.assertEquals(resultBlock.getNumDocsScanned(), 10);
     Assert.assertEquals(resultBlock.getTotalRawDocs(), 100000);
 
@@ -272,7 +272,7 @@ public class SelectionQueriesForMultiValueColumnTest {
     globalPlan.print();
     globalPlan.execute();
     final DataTable instanceResponse = globalPlan.getInstanceResponse();
-    System.out.println("instanceResponse : " + instanceResponse);
+//    System.out.println("instanceResponse : " + instanceResponse);
 
     final BrokerReduceService reduceService = new BrokerReduceService();
     final Map<ServerInstance, DataTable> instanceResponseMap = new HashMap<ServerInstance, DataTable>();

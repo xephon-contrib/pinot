@@ -121,7 +121,7 @@ public class SelectionQueriesTest {
     driver.init(config);
     driver.build();
 
-    System.out.println("built at : " + INDEX_DIR.getAbsolutePath());
+//    System.out.println("built at : " + INDEX_DIR.getAbsolutePath());
     final File indexSegmentDir = new File(INDEX_DIR, driver.getSegmentName());
     _indexSegment = ColumnarSegmentLoader.load(indexSegmentDir, ReadMode.heap);
     _medataMap = ((SegmentMetadataImpl) ((IndexSegmentImpl) _indexSegment).getSegmentMetadata()).getColumnMetadataMap();
@@ -146,7 +146,7 @@ public class SelectionQueriesTest {
       driver.init(config);
       driver.build();
 
-      System.out.println("built at : " + segmentDir.getAbsolutePath());
+//      System.out.println("built at : " + segmentDir.getAbsolutePath());
       _indexSegmentList
           .add(new OfflineSegmentDataManager(ColumnarSegmentLoader.load(new File(segmentDir, driver.getSegmentName()), ReadMode.heap)));
     }
@@ -169,10 +169,10 @@ public class SelectionQueriesTest {
     final IntermediateResultsBlock block = (IntermediateResultsBlock) selectionOperator.nextBlock();
     final PriorityQueue<Serializable[]> pq = (PriorityQueue<Serializable[]>) block.getSelectionResult();
     final DataSchema dataSchema = block.getSelectionDataSchema();
-    System.out.println(dataSchema);
+//    System.out.println(dataSchema);
     while (!pq.isEmpty()) {
       final Serializable[] row = pq.poll();
-      System.out.println(SelectionOperatorUtils.getRowStringFromSerializable(row, dataSchema));
+//      System.out.println(SelectionOperatorUtils.getRowStringFromSerializable(row, dataSchema));
       Assert.assertEquals(row[0], "i");
     }
   }
@@ -185,9 +185,9 @@ public class SelectionQueriesTest {
     rootPlanNode.showTree("");
     final MSelectionOrderByOperator operator = (MSelectionOrderByOperator) rootPlanNode.run();
     final IntermediateResultsBlock resultBlock = (IntermediateResultsBlock) operator.nextBlock();
-    System.out.println("RunningTime : " + resultBlock.getTimeUsedMs());
-    System.out.println("NumDocsScanned : " + resultBlock.getNumDocsScanned());
-    System.out.println("TotalDocs : " + resultBlock.getTotalRawDocs());
+//    System.out.println("RunningTime : " + resultBlock.getTimeUsedMs());
+//    System.out.println("NumDocsScanned : " + resultBlock.getNumDocsScanned());
+//    System.out.println("TotalDocs : " + resultBlock.getTotalRawDocs());
 
     List<Serializable[]> rows = getSelectionRows(brokerRequest, resultBlock);
     for (Serializable[] row : rows) {
@@ -203,9 +203,9 @@ public class SelectionQueriesTest {
     rootPlanNode.showTree("");
     final MSelectionOrderByOperator operator = (MSelectionOrderByOperator) rootPlanNode.run();
     final IntermediateResultsBlock resultBlock = (IntermediateResultsBlock) operator.nextBlock();
-    System.out.println("RunningTime : " + resultBlock.getTimeUsedMs());
-    System.out.println("NumDocsScanned : " + resultBlock.getNumDocsScanned());
-    System.out.println("TotalDocs : " + resultBlock.getTotalRawDocs());
+//    System.out.println("RunningTime : " + resultBlock.getTimeUsedMs());
+//    System.out.println("NumDocsScanned : " + resultBlock.getNumDocsScanned());
+//    System.out.println("TotalDocs : " + resultBlock.getTotalRawDocs());
     Assert.assertEquals(resultBlock.getNumDocsScanned(), 582);
     Assert.assertEquals(resultBlock.getTotalRawDocs(), 10001);
 
@@ -254,7 +254,7 @@ public class SelectionQueriesTest {
     globalPlan.print();
     globalPlan.execute();
     final DataTable instanceResponse = globalPlan.getInstanceResponse();
-    System.out.println("instanceResponse : " + instanceResponse);
+//    System.out.println("instanceResponse : " + instanceResponse);
 
     final Map<ServerInstance, DataTable> instanceResponseMap = new HashMap<ServerInstance, DataTable>();
     instanceResponseMap.put(new ServerInstance("localhost:0000"), instanceResponse);
@@ -276,8 +276,8 @@ public class SelectionQueriesTest {
 
     final BrokerReduceService brokerReduceService = new BrokerReduceService();
     final BrokerResponseNative brokerResponseNative = brokerReduceService.reduceOnDataTable(brokerRequest, instanceResponseMap);
-    System.out.println("Selection Result : " + brokerResponseNative.getSelectionResults().toString());
-    System.out.println("Time used : " + brokerResponseNative.getTimeUsedMs());
+//    System.out.println("Selection Result : " + brokerResponseNative.getSelectionResults().toString());
+//    System.out.println("Time used : " + brokerResponseNative.getTimeUsedMs());
 
     selectionResults = brokerResponseNative.getSelectionResults();
     List<String> columnArray = selectionResults.getColumns();
@@ -310,15 +310,15 @@ public class SelectionQueriesTest {
     globalPlan.print();
     globalPlan.execute();
     final DataTable instanceResponse = globalPlan.getInstanceResponse();
-    System.out.println("instanceResponse : " + instanceResponse);
+//    System.out.println("instanceResponse : " + instanceResponse);
 
     final Map<ServerInstance, DataTable> instanceResponseMap = new HashMap<ServerInstance, DataTable>();
     instanceResponseMap.put(new ServerInstance("localhost:0000"), instanceResponse);
 
     final BrokerReduceService reduceService = new BrokerReduceService();
     final BrokerResponseNative brokerResponse = reduceService.reduceOnDataTable(brokerRequest, instanceResponseMap);
-    System.out.println("Selection Result : " + brokerResponse.getSelectionResults());
-    System.out.println("Time used : " + brokerResponse.getTimeUsedMs());
+//    System.out.println("Selection Result : " + brokerResponse.getSelectionResults());
+//    System.out.println("Time used : " + brokerResponse.getTimeUsedMs());
 
     SelectionResults selectionResults = brokerResponse.getSelectionResults();
     List<String> columns = selectionResults.getColumns();
@@ -337,8 +337,8 @@ public class SelectionQueriesTest {
 
     final BrokerReduceService brokerReduceService = new BrokerReduceService();
     final BrokerResponseNative brokerResponseNative = brokerReduceService.reduceOnDataTable(brokerRequest, instanceResponseMap);
-    System.out.println("Selection Result : " + brokerResponseNative.getSelectionResults());
-    System.out.println("Time used : " + brokerResponseNative.getTimeUsedMs());
+//    System.out.println("Selection Result : " + brokerResponseNative.getSelectionResults());
+//    System.out.println("Time used : " + brokerResponseNative.getTimeUsedMs());
 
     selectionResults = brokerResponseNative.getSelectionResults();
     List<String> columnArray = selectionResults.getColumns();

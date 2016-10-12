@@ -132,8 +132,8 @@ public class AggregationMVGroupByMVQueriesTest {
     Assert.assertEquals(aggregationResult.getFunction(), "sum_column7");
     Assert.assertEquals(aggregationResult.getGroupByColumns().get(0), "column6");
 
-    System.out.println("testSumAggrMVGroupBySV");
-    System.out.println(aggregationResult.getGroupByResult());
+//    System.out.println("testSumAggrMVGroupBySV");
+//    System.out.println(aggregationResult.getGroupByResult());
 
     Map<String, String> expectedGroupByResults = new HashMap<>();
     expectedGroupByResults.put("[2147483647]", "1967352841480140.00000");
@@ -164,8 +164,8 @@ public class AggregationMVGroupByMVQueriesTest {
     Assert.assertEquals(aggregationResult.getFunction(), "sum_column7");
     Assert.assertEquals(aggregationResult.getGroupByColumns().get(0), "column7");
 
-    System.out.println("testSumAggrMVGroupByMV");
-    System.out.println(aggregationResult.getGroupByResult());
+//    System.out.println("testSumAggrMVGroupByMV");
+//    System.out.println(aggregationResult.getGroupByResult());
 
     Map<String, String> expectedGroupByResults = new HashMap<>();
     expectedGroupByResults.put("[2147483647]", "2144863716950660.00000");
@@ -197,8 +197,8 @@ public class AggregationMVGroupByMVQueriesTest {
     Assert.assertEquals(aggregationResult.getFunction(), "avg_column7");
     Assert.assertEquals(aggregationResult.getGroupByColumns().get(0), "column6");
 
-    System.out.println("testAvgAggrMVGroupBySV");
-    System.out.println(aggregationResult.getGroupByResult());
+//    System.out.println("testAvgAggrMVGroupBySV");
+//    System.out.println(aggregationResult.getGroupByResult());
   }
 
   @Test
@@ -214,8 +214,8 @@ public class AggregationMVGroupByMVQueriesTest {
     Assert.assertEquals(aggregationResult.getFunction(), "avg_column7");
     Assert.assertEquals(aggregationResult.getGroupByColumns().get(0), "column7");
 
-    System.out.println("testAvgAggrMVGroupByMV");
-    System.out.println(aggregationResult.getGroupByResult());
+//    System.out.println("testAvgAggrMVGroupByMV");
+//    System.out.println(aggregationResult.getGroupByResult());
 
     Map<String, String> expectedGroupByResults = new HashMap<>();
     expectedGroupByResults.put("[2147483647]", "2147483647.00000");
@@ -246,8 +246,8 @@ public class AggregationMVGroupByMVQueriesTest {
     Assert.assertEquals(aggregationResult.getFunction(), "min_column7");
     Assert.assertEquals(aggregationResult.getGroupByColumns().get(0), "column6");
 
-    System.out.println("testMinAggrMVGroupBySV");
-    System.out.println(aggregationResult.getGroupByResult());
+//    System.out.println("testMinAggrMVGroupBySV");
+//    System.out.println(aggregationResult.getGroupByResult());
 
   }
 
@@ -264,8 +264,8 @@ public class AggregationMVGroupByMVQueriesTest {
     Assert.assertEquals(aggregationResult.getFunction(), "min_column7");
     Assert.assertEquals(aggregationResult.getGroupByColumns().get(0), "column7");
 
-    System.out.println("testMinAggrMVGroupByMV");
-    System.out.println(aggregationResult.getGroupByResult());
+//    System.out.println("testMinAggrMVGroupByMV");
+//    System.out.println(aggregationResult.getGroupByResult());
 
   }
 
@@ -282,8 +282,8 @@ public class AggregationMVGroupByMVQueriesTest {
     Assert.assertEquals(aggregationResult.getFunction(), "max_column7");
     Assert.assertEquals(aggregationResult.getGroupByColumns().get(0), "column6");
 
-    System.out.println("testMaxAggrMVGroupBySV");
-    System.out.println(aggregationResult.getGroupByResult());
+//    System.out.println("testMaxAggrMVGroupBySV");
+//    System.out.println(aggregationResult.getGroupByResult());
 
   }
 
@@ -300,8 +300,8 @@ public class AggregationMVGroupByMVQueriesTest {
     Assert.assertEquals(aggregationResult.getFunction(), "max_column7");
     Assert.assertEquals(aggregationResult.getGroupByColumns().get(0), "column7");
 
-    System.out.println("testMaxAggrMVGroupByMV");
-    System.out.println(aggregationResult.getGroupByResult());
+//    System.out.println("testMaxAggrMVGroupByMV");
+//    System.out.println(aggregationResult.getGroupByResult());
 
     Map<String, String> expectedGroupByResults = new HashMap<>();
     expectedGroupByResults.put("[2147483647]", "2147483647.00000");
@@ -324,8 +324,8 @@ public class AggregationMVGroupByMVQueriesTest {
     Assert.assertEquals(aggregationResult.getFunction(), "distinctCount_column7");
     Assert.assertEquals(aggregationResult.getGroupByColumns().get(0), "column6");
 
-    System.out.println("testDistinctCountAggrMVGroupBySV");
-    System.out.println(aggregationResult.getGroupByResult());
+//    System.out.println("testDistinctCountAggrMVGroupBySV");
+//    System.out.println(aggregationResult.getGroupByResult());
     Map<String, String> expectedGroupByResults = new HashMap<>();
     expectedGroupByResults.put("[2147483647]", "301");
     expectedGroupByResults.put("[1035]", "85");
@@ -356,8 +356,8 @@ public class AggregationMVGroupByMVQueriesTest {
     Assert.assertEquals(aggregationResult.getFunction(), "distinctCount_column7");
     Assert.assertEquals(aggregationResult.getGroupByColumns().get(0), "column7");
 
-    System.out.println("testDistinctCountAggrMVGroupByMV");
-    System.out.println(aggregationResult.getGroupByResult());
+//    System.out.println("testDistinctCountAggrMVGroupByMV");
+//    System.out.println(aggregationResult.getGroupByResult());
     Map<String, String> expectedGroupByResults = new HashMap<>();
     expectedGroupByResults.put("[469]", "228");
     expectedGroupByResults.put("[363]", "227");

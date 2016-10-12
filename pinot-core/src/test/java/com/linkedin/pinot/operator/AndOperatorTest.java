@@ -50,7 +50,7 @@ public class AndOperatorTest {
       final BlockDocIdIterator iterator = blockDocIdSet.iterator();
       int docId;
       while ((docId = iterator.next()) != Constants.EOF) {
-        System.out.println(docId);
+//        System.out.println(docId);
       }
     }
     andOperator.close();
@@ -76,7 +76,7 @@ public class AndOperatorTest {
       final BlockDocIdIterator iterator = blockDocIdSet.iterator();
       int docId;
       while ((docId = iterator.next()) != Constants.EOF) {
-        System.out.println(docId);
+//        System.out.println(docId);
       }
     }
     andOperator.close();
@@ -106,7 +106,7 @@ public class AndOperatorTest {
       final BlockDocIdIterator iterator = blockDocIdSet.iterator();
       int docId;
       while ((docId = iterator.next()) != Constants.EOF) {
-        System.out.println(docId);
+//        System.out.println(docId);
       }
     }
     andOperator.close();
@@ -136,7 +136,7 @@ public class AndOperatorTest {
       final BlockDocIdIterator iterator = blockDocIdSet.iterator();
       int docId;
       while ((docId = iterator.next()) != Constants.EOF) {
-        System.out.println(docId);
+//        System.out.println(docId);
       }
     }
     andOperator.close();
