@@ -39,9 +39,14 @@ public class KafkaStreamMetadata implements StreamMetadata {
   private final String _zkBrokerUrl;
   private final String _bootstrapHosts;
   private final String _decoderClass;
+  private final long _kafkaConnectionTimeoutMillis;
+  private final int _kafkaFetchTimeoutMillis;
   private final Map<String, String> _decoderProperties = new HashMap<String, String>();
   private final Map<String, String> _kafkaConsumerProperties = new HashMap<String, String>();
   private final Map<String, String> _streamConfigMap = new HashMap<String, String>();
+
+  private static final long DEFAULT_KAFKA_CONNECTION_TIMEOUT_MILLIS = 30000L;
+  private static final int DEFAULT_KAFKA_FETCH_TIMEOUT_MILLIS = 5000;
 
   public KafkaStreamMetadata(Map<String, String> streamConfigMap) {
     _zkBrokerUrl =
@@ -71,6 +76,35 @@ public class KafkaStreamMetadata implements StreamMetadata {
     _decoderClass =
         streamConfigMap.get(StringUtil.join(".", CommonConstants.Helix.DataSource.STREAM_PREFIX,
             CommonConstants.Helix.DataSource.Realtime.Kafka.DECODER_CLASS));
+
+    final String kafkaConnectionTimeoutPropertyKey = StringUtil.join(".", Helix.DataSource.STREAM_PREFIX,
+        Helix.DataSource.Realtime.Kafka.KAFKA_CONNECTION_TIMEOUT_MILLIS);
+    long kafkaConnectionTimeoutMillis;
+    if (streamConfigMap.containsKey(kafkaConnectionTimeoutPropertyKey)) {
+      try {
+        kafkaConnectionTimeoutMillis = Long.parseLong(streamConfigMap.get(kafkaConnectionTimeoutPropertyKey));
+      } catch (Exception e) {
+        kafkaConnectionTimeoutMillis = DEFAULT_KAFKA_CONNECTION_TIMEOUT_MILLIS;
+      }
+    } else {
+      kafkaConnectionTimeoutMillis = DEFAULT_KAFKA_CONNECTION_TIMEOUT_MILLIS;
+    }
+    _kafkaConnectionTimeoutMillis = kafkaConnectionTimeoutMillis;
+
+    final String kafkaFetchTimeoutPropertyKey = StringUtil.join(".", Helix.DataSource.STREAM_PREFIX,
+        Helix.DataSource.Realtime.Kafka.KAFKA_FETCH_TIMEOUT_MILLIS);
+    int kafkaFetchTimeoutMillis;
+    if (streamConfigMap.containsKey(kafkaFetchTimeoutPropertyKey)) {
+      try {
+        kafkaFetchTimeoutMillis = Integer.parseInt(streamConfigMap.get(kafkaFetchTimeoutPropertyKey));
+      } catch (Exception e) {
+        kafkaFetchTimeoutMillis = DEFAULT_KAFKA_FETCH_TIMEOUT_MILLIS;
+      }
+    } else {
+      kafkaFetchTimeoutMillis = DEFAULT_KAFKA_FETCH_TIMEOUT_MILLIS;
+    }
+    _kafkaFetchTimeoutMillis = kafkaFetchTimeoutMillis;
+
     for (String key : streamConfigMap.keySet()) {
       if (key.startsWith(CommonConstants.Helix.DataSource.STREAM_PREFIX + ".")) {
         _streamConfigMap.put(key, streamConfigMap.get(key));
@@ -94,6 +128,14 @@ public class KafkaStreamMetadata implements StreamMetadata {
 
   public boolean hasSimpleKafkaConsumerType() {
     return _consumerTypes.contains(ConsumerType.simple);
+  }
+
+  public long getKafkaConnectionTimeoutMillis() {
+    return _kafkaConnectionTimeoutMillis;
+  }
+
+  public int getKafkaFetchTimeoutMillis() {
+    return _kafkaFetchTimeoutMillis;
   }
 
   public String getKafkaTopicName() {

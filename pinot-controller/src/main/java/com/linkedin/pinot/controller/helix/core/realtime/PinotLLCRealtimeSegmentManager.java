@@ -285,7 +285,7 @@ public class PinotLLCRealtimeSegmentManager {
 
     for (int i = 0; i < nPartitions; i++) {
       SimpleConsumerWrapper kafkaConsumer = SimpleConsumerWrapper.forPartitionConsumption(new KafkaSimpleConsumerFactoryImpl(),
-          bootstrapHosts, "dummyClientId", topicName, i);
+          bootstrapHosts, "dummyClientId", topicName, i, KAFKA_PARTITION_OFFSET_FETCH_TIMEOUT_MILLIS);
       try {
         final List instances = partitionMap.get(Integer.toString(i));
         LLCRealtimeSegmentZKMetadata metadata = new LLCRealtimeSegmentZKMetadata();
