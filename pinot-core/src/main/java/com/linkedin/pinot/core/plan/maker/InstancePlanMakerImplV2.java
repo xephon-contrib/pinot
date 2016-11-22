@@ -70,20 +70,23 @@ public class InstancePlanMakerImplV2 implements PlanMaker {
 
   @Override
   public PlanNode makeInnerSegmentPlan(IndexSegment indexSegment, BrokerRequest brokerRequest) {
+    BrokerRequest copiedBrokerRequest = brokerRequest.deepCopy();
+    BrokerRequestPreProcessor.preProcess(indexSegment.getSegmentMetadata(), copiedBrokerRequest);
+
     // Aggregation query.
     if (brokerRequest.isSetAggregationsInfo()) {
       if (brokerRequest.isSetGroupBy()) {
         // Aggregation group-by query.
-        return new AggregationGroupByPlanNode(indexSegment, brokerRequest, _numAggrGroupsLimit);
+        return new AggregationGroupByPlanNode(indexSegment, copiedBrokerRequest, _numAggrGroupsLimit);
       } else {
         // Aggregation only query.
-        return new AggregationPlanNode(indexSegment, brokerRequest);
+        return new AggregationPlanNode(indexSegment, copiedBrokerRequest);
       }
     }
 
     // Selection query.
     if (brokerRequest.isSetSelections()) {
-      return new SelectionPlanNode(indexSegment, brokerRequest);
+      return new SelectionPlanNode(indexSegment, copiedBrokerRequest);
     }
 
     throw new UnsupportedOperationException("The query contains no aggregation or selection.");
